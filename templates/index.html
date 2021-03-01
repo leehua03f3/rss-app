@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+
+{% block content %}
+{% for title, feed in urls.items() %}
+	<div class="container-fluid">
+		<h2>{{ title }}</h2>
+		{% for entry in feed.entries %}
+		<div class="row">
+			<div class="col-8">
+				<a href="{{ entry.link }}">{{ entry.title }}</a>
+			</div>
+			<div class="col">
+				<form action="{{ url_for('index')}}" method="post">
+				<input name='link' type='hidden' value='{{ entry.link }}'>
+				<input name='title' type='hidden' value='{{ entry.title }}'>
+				<input type="submit" value="Watch" style="float: right;" class="btn btn-light">
+				</form>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+{% endfor %}
+{% endblock %} 

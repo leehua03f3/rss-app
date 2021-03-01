@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block content %}
+	<div class="container-fluid">
+		<h2>Read List</h2>
+		{% for item in read_list %}
+			<div class="row">
+			<div class="col-8">
+				<a href="{{ item[2] }}">{{ item[1] }}</a>
+			</div>
+			<div class="col">
+				<form action="{{ url_for('read')}}" method="post">
+					<input type="hidden" name="title" value="{{ item[1] }}">
+					<input type="submit" value="Remove" style="float: right;" class="btn btn-light">
+				</form>
+			</div>
+			</div>
+		{% endfor %}
+	</div>
+{% endblock %}
