@@ -1,19 +1,8 @@
 import feedparser
+from feeder import get_feed
 import sqlite3 as lite
 
-rd_learnprogramming = feedparser.parse("https://www.reddit.com/r/learnprogramming/" + ".rss")
-rd_cscareer = feedparser.parse("https://www.reddit.com/r/cscareerquestions/" + ".rss")
-rd_wgu_comsci = feedparser.parse("https://www.reddit.com/r/WGU_CompSci/" + ".rss")
-rd_wgu = feedparser.parse("https://www.reddit.com/r/WGU/" + ".rss")
-
-hn = feedparser.parse("https://hnrss.org/frontpage")
-
-urls = {"Hacker News": hn,
-		"Reddit | Learn Programming": rd_learnprogramming,
-		"Reddit | CS Career": rd_cscareer,
-		"Reddit | WGU": rd_wgu,
-		"Reddit | WGU Computer Science": rd_wgu_comsci,
-		}
+urls = get_feed()
 
 from flask import Flask
 from flask import render_template, request
